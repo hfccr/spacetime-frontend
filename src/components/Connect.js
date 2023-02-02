@@ -1,0 +1,105 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Button, ButtonGroup, Tooltip } from "@mui/material";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { useAccount, useConnect, useEnsName, useDisconnect } from "wagmi";
+import toast from "react-hot-toast";
+import { fvmChain } from "@/util/chain";
+import { motion } from "framer-motion";
+import { newDelegatedEthAddress } from "@glif/filecoin-address";
+
+const connector = new MetaMaskConnector();
+
+export default function Connect({}) {
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect({
+    onSuccess() {
+      toast("Account disconnected!", {
+        style: {
+          border: "2px solid #000",
+        },
+      });
+    },
+    onError() {
+      toast.error("Failed to disconnect account!", {
+        style: {
+          border: "2px solid #000",
+        },
+      });
+    },
+  });
+  const { connect } = useConnect({
+    chainId: fvmChain.id,
+    connector,
+    onSuccess() {
+      toast.success("Account connected!", {
+        style: {
+          border: "2px solid #000",
+        },
+      });
+    },
+    onError() {
+      toast.error("Error connecting account!", {
+        style: {
+          border: "2px solid #000",
+        },
+      });
+    },
+  });
+  const handleConnect = () => {
+    if (isConnected) {
+      disconnect();
+    } else {
+      connect();
+    }
+  };
+  let message = "Connect MetaMask";
+  let showConnect = true;
+  let t4Message = "Connect MetaMask";
+  let f4Address;
+  if (isConnected && hydrated) {
+    showConnect = false;
+    message = address.slice(0, 6) + "..." + address.slice(-4);
+    f4Address = newDelegatedEthAddress(address).toString();
+    t4Message = f4Address.slice(0, 6) + "..." + f4Address.slice(-4);
+  }
+  const copyAddressToClipboard = () => {
+    navigator.clipboard.writeText(address);
+    toast.success("Copied to clipboard", {
+      style: {
+        border: "2px solid #000",
+      },
+    });
+  };
+  const copyf4AddressToClipboard = () => {
+    navigator.clipboard.writeText(f4Address);
+    toast.success("Copied to clipboard", {
+      style: {
+        border: "2px solid #000",
+      },
+    });
+  };
+  return (
+    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+      {showConnect && <Button onClick={handleConnect}>{message}</Button>}
+      {!showConnect && (
+        <ButtonGroup>
+          <Tooltip title={`Copy ETH Address ${address}`}>
+            <Button onClick={copyAddressToClipboard}>{message}</Button>
+          </Tooltip>
+          <Tooltip title={`Copy Filecoin t4 Address ${f4Address}`}>
+            <Button onClick={copyf4AddressToClipboard}>{t4Message}</Button>
+          </Tooltip>
+          <Tooltip title="Disconnect Account">
+            <Button onClick={handleConnect}>Disconnect</Button>
+          </Tooltip>
+        </ButtonGroup>
+      )}
+    </motion.div>
+  );
+}

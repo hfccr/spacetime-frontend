@@ -1,4 +1,12 @@
-import './globals.css'
+"use client";
+import { ThemeProvider } from "@mui/material/styles";
+import Header from "./../components/Header";
+import { brandingDarkTheme } from "./../util/theme";
+import { WagmiConfig } from "wagmi";
+import "@fontsource/michroma";
+import "./globals.css";
+import { client } from "./../util/chain";
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({ children }) {
   return (
@@ -8,7 +16,22 @@ export default function RootLayout({ children }) {
         head.js. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <WagmiConfig client={client}>
+          <ThemeProvider theme={brandingDarkTheme}>
+            <Header />
+            <div>{children}</div>
+            <Toaster
+              toastOptions={{
+                className: "",
+                style: {
+                  fontFamily: "Michroma",
+                },
+              }}
+            />
+          </ThemeProvider>
+        </WagmiConfig>
+      </body>
     </html>
-  )
+  );
 }
