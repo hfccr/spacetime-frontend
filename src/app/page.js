@@ -4,6 +4,7 @@ import { Inter } from "@next/font/google";
 import styles from "./page.module.css";
 import { motion } from "framer-motion";
 import { Box, Typography } from "@mui/material";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,43 +21,28 @@ export default function Home() {
       </Box>
 
       <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link href="/dapp/client" className={styles.card}>
           <h2 className={inter.className}>
             Clients <span>-&gt;</span>
           </h2>
           <p className={inter.className}>
             Reserve storage prices for future use
           </p>
-        </a>
+        </Link>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link href="/dapp/provider" className={styles.card}>
           <h2 className={inter.className}>
             Providers <span>-&gt;</span>
           </h2>
           <p className={inter.className}>Sell storage space in advance</p>
-        </a>
+        </Link>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link href="/dapp/trader" className={styles.card}>
           <h2 className={inter.className}>
             Traders <span>-&gt;</span>
           </h2>
           <p className={inter.className}>Speculate on the price of storage</p>
-        </a>
+        </Link>
       </div>
     </main>
   );
