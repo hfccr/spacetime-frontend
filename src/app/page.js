@@ -17,7 +17,9 @@ export default function Home() {
             <h1 className={styles.thirteen}>SPACETIME</h1>
           </div>
         </motion.div>
-        <Typography variant="h6">FVM Based Storage Derivatives</Typography>
+        <Typography variant="h6" sx={{ marginBottom: 2 }}>
+          FVM Based Storage Derivatives
+        </Typography>
       </Box>
 
       <div className={styles.grid}>
@@ -42,6 +44,29 @@ export default function Home() {
             Traders <span>&gt;</span>
           </h2>
           <p className={styles.menuItem}>Speculate on the price of storage</p>
+        </Link>
+
+        <Link href="/dapp/trader" className={styles.card}>
+          <h2 className={styles.menuItem}>
+            Activity <span>&gt;</span>
+          </h2>
+          <p className={styles.menuItem}>View Market Activity</p>
+        </Link>
+
+        <Link href="/dapp/trader" className={styles.card}>
+          <h2 className={styles.menuItem}>
+            DAO <span>&gt;</span>
+          </h2>
+          <p className={styles.menuItem}>View DAO</p>
+        </Link>
+
+        <Link href="/dapp/trader" className={styles.card}>
+          <h2 className={styles.menuItem}>
+            Setup PUSH <span>&gt;</span>
+          </h2>
+          <p className={styles.menuItem}>
+            Get notified about interactions on your positions
+          </p>
         </Link>
       </div>
     </main>
