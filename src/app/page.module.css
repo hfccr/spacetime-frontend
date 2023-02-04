@@ -278,3 +278,7 @@
     transform: rotate(0deg);
   }
 }
+
+.menuItem {
+  font-family: "Michroma";
+}
