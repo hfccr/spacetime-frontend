@@ -85,7 +85,7 @@ export default function Connect({}) {
     });
   };
   return (
-    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+    <>
       {showConnect && <Button onClick={handleConnect}>{message}</Button>}
       {!showConnect && (
         <ButtonGroup>
@@ -100,6 +100,6 @@ export default function Connect({}) {
           </Tooltip>
         </ButtonGroup>
       )}
-    </motion.div>
+    </>
   );
 }
