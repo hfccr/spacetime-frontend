@@ -8,9 +8,11 @@ import {
   Tabs,
   Tooltip,
   Typography,
+  Button,
 } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function ProviderLayout({ children }) {
   return (
@@ -28,11 +30,30 @@ export default function ProviderLayout({ children }) {
           PUSH
         </Box>
       </Tooltip>
-      <Stack direction="row" sx={{ padding: 2, marginTop: 4 }} spacing={4}>
+      <Stack
+        direction="column"
+        sx={{ padding: 2, marginTop: 4 }}
+        spacing={4}
+        justifyContent="center"
+        alignItems="center"
+      >
         <Typography>
           Subscribe to Spacetime channel on PUSH to receive notifications about
           your positions
         </Typography>
+        <Box
+          component="div"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image src="/push.png" alt="Push Channel" width={364} height={166} />
+        </Box>
+        <Button href="https://staging.push.org" target="_blank">
+          Visit PUSH
+        </Button>
       </Stack>
     </>
   );
