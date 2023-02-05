@@ -15,10 +15,8 @@ import { usePathname } from "next/navigation";
 export default function ClientLayout({ children }) {
   const path = usePathname();
   let selected = "about";
-  if (path.indexOf("positions") >= 0) {
-    selected = "positions";
-  } else if (path.indexOf("market") >= 0) {
-    selected = "market";
+  if (path.indexOf("membership") >= 0) {
+    selected = "membership";
   }
   return (
     <>
@@ -32,7 +30,7 @@ export default function ClientLayout({ children }) {
             cursor: "pointer",
           }}
         >
-          Client
+          Membership
         </Box>
       </Tooltip>
       <Stack direction="row" sx={{ padding: 2, marginTop: 4 }} spacing={4}>
@@ -52,21 +50,14 @@ export default function ClientLayout({ children }) {
           <Tab
             label="About"
             value="about"
-            href="/dapp/client/about"
+            href="/dapp/dao/about"
             LinkComponent={Link}
             sx={{ alignItems: "flex-start", fontSize: "large" }}
           />
           <Tab
-            label="Positions"
-            value="positions"
-            href="/dapp/client/positions"
-            LinkComponent={Link}
-            sx={{ alignItems: "flex-start", fontSize: "large" }}
-          />
-          <Tab
-            label="Market"
-            value="market"
-            href="/dapp/client/market"
+            label="Membership"
+            value="membership"
+            href="/dapp/dao/membership"
             LinkComponent={Link}
             sx={{ alignItems: "flex-start", fontSize: "large" }}
           />

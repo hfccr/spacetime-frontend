@@ -32,7 +32,7 @@ export default function Home() {
           </p>
         </Link>
 
-        <Link href="/dapp/provider" className={styles.card}>
+        <Link href="/dapp/provider/about" className={styles.card}>
           <h2 className={styles.menuItem}>
             Providers <span>&gt;</span>
           </h2>
@@ -43,26 +43,26 @@ export default function Home() {
           <h2 className={styles.menuItem}>
             Traders <span>&gt;</span>
           </h2>
-          <p className={styles.menuItem}>Speculate on the price of storage</p>
+          <p className={styles.menuItem}>Trade storage derivatives</p>
         </Link>
 
-        <Link href="/dapp/trader" className={styles.card}>
+        <Link href="/dapp/token/about" className={styles.card}>
           <h2 className={styles.menuItem}>
-            Activity <span>&gt;</span>
+            Token <span>&gt;</span>
           </h2>
-          <p className={styles.menuItem}>View Market Activity</p>
+          <p className={styles.menuItem}>View SPT metrics</p>
         </Link>
 
-        <Link href="/dapp/trader" className={styles.card}>
+        <Link href="/dapp/dao/about" className={styles.card}>
           <h2 className={styles.menuItem}>
             DAO <span>&gt;</span>
           </h2>
           <p className={styles.menuItem}>View DAO</p>
         </Link>
 
-        <Link href="/dapp/trader" className={styles.card}>
+        <Link href="/dapp/push" className={styles.card}>
           <h2 className={styles.menuItem}>
-            Setup PUSH <span>&gt;</span>
+            PUSH <span>&gt;</span>
           </h2>
           <p className={styles.menuItem}>
             Get notified about interactions on your positions

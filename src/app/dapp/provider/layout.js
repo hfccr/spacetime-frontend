@@ -12,17 +12,19 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function ClientLayout({ children }) {
+export default function ProviderLayout({ children }) {
   const path = usePathname();
   let selected = "about";
   if (path.indexOf("positions") >= 0) {
     selected = "positions";
+  } else if (path.indexOf("create") >= 0) {
+    selected = "create";
   } else if (path.indexOf("market") >= 0) {
     selected = "market";
   }
   return (
     <>
-      <Tooltip title="Client">
+      <Tooltip title="Provider">
         <Box
           component="span"
           sx={{
@@ -32,7 +34,7 @@ export default function ClientLayout({ children }) {
             cursor: "pointer",
           }}
         >
-          Client
+          Provider
         </Box>
       </Tooltip>
       <Stack direction="row" sx={{ padding: 2, marginTop: 4 }} spacing={4}>
@@ -52,21 +54,28 @@ export default function ClientLayout({ children }) {
           <Tab
             label="About"
             value="about"
-            href="/dapp/client/about"
+            href="/dapp/provider/about"
             LinkComponent={Link}
             sx={{ alignItems: "flex-start", fontSize: "large" }}
           />
           <Tab
             label="Positions"
             value="positions"
-            href="/dapp/client/positions"
+            href="/dapp/provider/positions"
+            LinkComponent={Link}
+            sx={{ alignItems: "flex-start", fontSize: "large" }}
+          />
+          <Tab
+            label="Create Position"
+            value="create"
+            href="/dapp/provider/create"
             LinkComponent={Link}
             sx={{ alignItems: "flex-start", fontSize: "large" }}
           />
           <Tab
             label="Market"
             value="market"
-            href="/dapp/client/market"
+            href="/dapp/provider/market"
             LinkComponent={Link}
             sx={{ alignItems: "flex-start", fontSize: "large" }}
           />
