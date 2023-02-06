@@ -7,7 +7,8 @@ export default function About() {
   return (
     <Container>
       <Typography>
-        Spacetime DAO governs the Spacetime derivatives protocol
+        Spacetime DAO governs the Spacetime derivatives protocol and the
+        Spacetime token and its membership grants rights to create a derivative
       </Typography>
     </Container>
   );

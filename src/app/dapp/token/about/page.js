@@ -7,8 +7,11 @@ export default function About() {
   return (
     <Container>
       <Typography>
-        SPT token enables Storage Providers fund their Filecoin journey whether
-        it is starting out or expanding
+        SPT tokens are required for clients to purchase derivatives as fees and
+        for margin. These tokens are transferred to the Storage Provider once
+        the derivative is bought. The storage provider can use these tokens to
+        fund their hardware setup and Filecoin collateral to fund the upcoming
+        obligation.
       </Typography>
     </Container>
   );

@@ -5,7 +5,7 @@ import { brandingDarkTheme } from "./../util/theme";
 import { WagmiConfig } from "wagmi";
 import "@fontsource/michroma";
 import "./globals.css";
-import { client } from "./../util/chain";
+import { client } from "../util/chain";
 import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({ children }) {

@@ -7,8 +7,9 @@ export default function About() {
   return (
     <Container>
       <Typography>
-        SPT token enables Storage Providers fund their Filecoin journey whether
-        it is starting out or expanding
+        Spacetime DAO controls the distribution of Spacetime Tokens. The DAO
+        awards new SP joinees with 1000 SPT tokens and awards them derivative
+        fees and margins in SPT tokens.
       </Typography>
     </Container>
   );

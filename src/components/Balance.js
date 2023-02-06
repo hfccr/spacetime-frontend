@@ -23,6 +23,7 @@ import { fvmChain } from "@/util/chain";
 import { motion } from "framer-motion";
 import { newDelegatedEthAddress } from "@glif/filecoin-address";
 import { Beryx } from "@zondax/beryx";
+import { useTokenBalance } from "@/hooks/useSpacetimeToken";
 
 const connector = new MetaMaskConnector();
 
@@ -38,6 +39,12 @@ export default function Balance({}) {
   const { data, isError, isLoading, isSuccess } = useBalance({
     address,
   });
+  const {
+    tokenBalance,
+    isLoading: tokenBalanceLoading,
+    isSuccess: tokenBalanceSuccess,
+    isError: tokenBalanceError,
+  } = useTokenBalance(address);
   useEffect(() => {
     setHydrated(true);
   }, []);
@@ -53,6 +60,17 @@ export default function Balance({}) {
           <Typography variant="subtitle1">{`${(+data.formatted).toFixed(4)} ${
             data.symbol
           }`}</Typography>
+        )}
+      </Stack>
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Typography variant="h4">Spacetime Tokens</Typography>
+        {tokenBalanceLoading && (
+          <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+        )}
+        {tokenBalanceSuccess && (
+          <Typography variant="subtitle1">{`${(+tokenBalance.toString()).toFixed(
+            4
+          )} SPT`}</Typography>
         )}
       </Stack>
     </Box>
