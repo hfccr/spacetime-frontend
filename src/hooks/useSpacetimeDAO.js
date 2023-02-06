@@ -35,5 +35,17 @@ export function useDerivatives() {
     args: [],
     watch: true,
   });
-  return { isSuccess, derivatives, isLoading, isError, error };
+  let mappedDerivatives = derivatives;
+  if (isSuccess) {
+    mappedDerivatives = derivatives.map((derivative, index) => {
+      return { ...derivative, tokenId: index };
+    });
+  }
+  return {
+    isSuccess,
+    derivatives: mappedDerivatives,
+    isLoading,
+    isError,
+    error,
+  };
 }
