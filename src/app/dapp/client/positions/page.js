@@ -1,7 +1,10 @@
 "use client";
+import MarketTable from "@/components/MarketTable";
 import { Typography } from "@mui/material";
 import React from "react";
+import { useAccount } from "wagmi";
 
 export default function Positions() {
-  return <Typography>View Position</Typography>;
+  const { address } = useAccount();
+  return <MarketTable address={address} view="client" />;
 }

@@ -58,11 +58,9 @@ export default function About() {
   }
   const join = () => {
     joinWrite?.();
-    toast.success("Getting you to join the DAO");
   };
   const leave = () => {
     leaveWrite?.();
-    toast.success("Making you get out of the DAO");
   };
   const anyLoad =
     joinIsLoading ||

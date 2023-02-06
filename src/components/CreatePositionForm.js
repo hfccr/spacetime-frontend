@@ -22,10 +22,10 @@ export default function CreatePositionForm({ actor, onSubmit }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      type: "future",
-      dealSize: "32g",
-      term: "3m",
-      price: 1100000000000,
+      type: 0,
+      dealSize: 100000,
+      term: 20000,
+      price: 110000000,
     },
   });
   let priceHelperText = "";
@@ -35,6 +35,22 @@ export default function CreatePositionForm({ actor, onSubmit }) {
     priceHelperText = "Price should be greater than 0";
   } else if (errors.price?.type === "max") {
     priceHelperText = "Price should be lesser than 110000000000000";
+  }
+  let sizeHelperText = "";
+  if (errors.dealSize?.type === "required") {
+    sizeHelperText = "Size is required";
+  } else if (errors.dealSize?.type === "min") {
+    sizeHelperText = "Size should be greater than 10000";
+  } else if (errors.dealSize?.type === "max") {
+    sizeHelperText = "Size should be lesser than 10000000";
+  }
+  let termHelperText = "";
+  if (errors.term?.type === "required") {
+    termHelperText = "Term is required";
+  } else if (errors.term?.type === "min") {
+    termHelperText = "Term should be greater than 10000";
+  } else if (errors.term?.type === "max") {
+    termHelperText = "Term should be lesser than 10000000";
   }
   return (
     <Box
@@ -59,9 +75,9 @@ export default function CreatePositionForm({ actor, onSubmit }) {
             control={control}
             render={({ field }) => (
               <Select {...field}>
-                <MenuItem value="future">Future</MenuItem>
-                <MenuItem value="option">Option</MenuItem>
-                <MenuItem value="perpetual">Perpetual</MenuItem>
+                <MenuItem value={0}>Future</MenuItem>
+                <MenuItem value={1}>Option</MenuItem>
+                <MenuItem value={2}>Perpetual</MenuItem>
               </Select>
             )}
           />
@@ -76,11 +92,18 @@ export default function CreatePositionForm({ actor, onSubmit }) {
           <Controller
             name="dealSize"
             control={control}
+            rules={{
+              required: true,
+              min: 10000,
+              max: 10000000,
+            }}
             render={({ field }) => (
-              <Select {...field}>
-                <MenuItem value="512m">512 MB</MenuItem>
-                <MenuItem value="32g">32 GB</MenuItem>
-              </Select>
+              <TextField
+                {...field}
+                type="number"
+                error={errors.dealSize}
+                helperText={sizeHelperText}
+              />
             )}
           />
         </Stack>
@@ -94,12 +117,18 @@ export default function CreatePositionForm({ actor, onSubmit }) {
           <Controller
             name="term"
             control={control}
+            rules={{
+              required: true,
+              min: 10000,
+              max: 10000000,
+            }}
             render={({ field }) => (
-              <Select {...field}>
-                <MenuItem value="3m">3 Months</MenuItem>
-                <MenuItem value="6m">6 Months</MenuItem>
-                <MenuItem value="1y">1 Year</MenuItem>
-              </Select>
+              <TextField
+                {...field}
+                type="number"
+                error={errors.term}
+                helperText={termHelperText}
+              />
             )}
           />
         </Stack>
@@ -116,7 +145,7 @@ export default function CreatePositionForm({ actor, onSubmit }) {
             rules={{
               required: true,
               min: 1,
-              max: 110000000000000,
+              max: 11000000000,
             }}
             render={({ field }) => (
               <TextField
