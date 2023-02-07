@@ -228,7 +228,7 @@ const Flow = () => {
 const WhatIf = () => {
   return (
     <>
-      <Typography variant="h6" sx={{ fontWeight: "bold", margin: 4 }}>
+      <Typography variant="h6" sx={{ fontWeight: "bold", margin: 6 }}>
         What If?
       </Typography>
       <Stack

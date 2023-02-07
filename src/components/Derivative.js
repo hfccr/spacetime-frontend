@@ -3,10 +3,27 @@ import { derivativeTypes, derivativeStates } from "@/constants/derivatives";
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import SpacetimeERC721 from "./../constants/abi/SpacetimeERC721.json";
 import React from "react";
-import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
+import {
+  useAccount,
+  useContractWrite,
+  usePrepareContractWrite,
+  useProvider,
+  useSigner,
+} from "wagmi";
+import {
+  buyContract,
+  completeDealManual,
+  setDealProposal,
+  setPrice,
+  setTrade,
+} from "@/hooks/derivativeStateChange";
+import { fvmChain } from "@/util/chain";
+import { toast } from "react-hot-toast";
 
 export default function Derivative({ derivative, view, address }) {
   const { address: currentAddress } = useAccount();
+  const { data: ethSigner } = useSigner(fvmChain.id);
+  const ethProvider = useProvider(fvmChain.id);
   const shorten = (address) => {
     return address.slice(0, 6) + "..." + address.slice(-4);
   };
@@ -28,54 +45,81 @@ export default function Derivative({ derivative, view, address }) {
   const proposalEnabled =
     currentAddress === clientEthAddress && derivativeState === 1;
   const closeEnabled =
-    currentAddress === providerEthAddress &&
-    (derivativeState === 1 || derivativeState === 2);
-  const buyEnabled = derivativeState === 0;
-  const listEnabled = derivativeState === 1 && onSale === false;
+    currentAddress === providerEthAddress && derivativeState === 2;
+  const buyEnabled =
+    derivativeState === 0 && currentAddress !== providerEthAddress;
+  const listEnabled =
+    derivativeState === 1 &&
+    onSale === false &&
+    currentAddress === clientEthAddress;
   const hasClient =
     clientEthAddress !== "0x0000000000000000000000000000000000000000";
   const tradeEnabled = derivativeState === 1 && onSale === true;
 
-  const { config: buyConfig } = usePrepareContractWrite({
-    address: Contracts.SpacetimeERC721,
-    abi: SpacetimeERC721.abi,
-    functionName: "setClient",
-    args: [tokenId, 1337],
-  });
-  const { write: buyWrite } = useContractWrite(buyConfig);
+  // const { config: buyConfig } = usePrepareContractWrite({
+  //   address: Contracts.SpacetimeERC721,
+  //   abi: SpacetimeERC721.abi,
+  //   functionName: "setClient",
+  //   args: [tokenId, 1337],
+  // });
+  // const { write: buyWrite } = useContractWrite(buyConfig);
 
-  const { config: listConfig } = usePrepareContractWrite({
-    address: Contracts.SpacetimeERC721,
-    abi: SpacetimeERC721.abi,
-    functionName: "setPrice",
-    args: [tokenId, 10000],
-  });
-  const { write: listWrite } = useContractWrite(listConfig);
+  // const { config: listConfig } = usePrepareContractWrite({
+  //   address: Contracts.SpacetimeERC721,
+  //   abi: SpacetimeERC721.abi,
+  //   functionName: "setPrice",
+  //   args: [tokenId, 10000],
+  // });
+  // const { write: listWrite } = useContractWrite(listConfig);
 
-  const { config: proposalConfig } = usePrepareContractWrite({
-    address: Contracts.SpacetimeERC721,
-    abi: SpacetimeERC721.abi,
-    functionName: "submitDealProposal",
-    args: [tokenId],
-  });
-  const { write: proposalWrite } = useContractWrite(proposalConfig);
+  // const { config: proposalConfig } = usePrepareContractWrite({
+  //   address: Contracts.SpacetimeERC721,
+  //   abi: SpacetimeERC721.abi,
+  //   functionName: "submitDealProposal",
+  //   args: [tokenId],
+  // });
+  // const { write: proposalWrite } = useContractWrite(proposalConfig);
 
-  const { config: closeConfig } = usePrepareContractWrite({
-    address: Contracts.SpacetimeERC721,
-    abi: SpacetimeERC721.abi,
-    functionName: "completeDealManual",
-    args: [tokenId],
-  });
-  const { write: closeWrite } = useContractWrite(closeConfig);
+  // const { config: closeConfig } = usePrepareContractWrite({
+  //   address: Contracts.SpacetimeERC721,
+  //   abi: SpacetimeERC721.abi,
+  //   functionName: "completeDealManual",
+  //   args: [tokenId],
+  // });
+  // const { write: closeWrite } = useContractWrite(closeConfig);
 
-  const { config: tradeConfig } = usePrepareContractWrite({
-    address: Contracts.SpacetimeERC721,
-    abi: SpacetimeERC721.abi,
-    functionName: "purchase",
-    args: [tokenId, 1337],
-  });
-  const { write: tradeWrite } = useContractWrite(tradeConfig);
+  // const { config: tradeConfig } = usePrepareContractWrite({
+  //   address: Contracts.SpacetimeERC721,
+  //   abi: SpacetimeERC721.abi,
+  //   functionName: "purchase",
+  //   args: [tokenId, 1337],
+  // });
+  // const { write: tradeWrite } = useContractWrite(tradeConfig);
 
+  const buyWrite = async () => {
+    await buyContract(ethProvider, ethSigner, tokenId, 1337);
+    toast.success("Attempting Contract Purchase");
+  };
+
+  const listWrite = async () => {
+    await setPrice(ethProvider, ethSigner, tokenId);
+    toast.success("Setting Contract Trading Price");
+  };
+
+  const tradeWrite = async () => {
+    await setTrade(ethProvider, ethSigner, tokenId);
+    toast.success("Attempting Contract Purchase");
+  };
+
+  const proposalWrite = async () => {
+    await setDealProposal(ethProvider, ethSigner, tokenId);
+    toast.success("Attempting Contract Deal Proposal");
+  };
+
+  const closeWrite = async () => {
+    await completeDealManual(ethProvider, ethSigner, tokenId);
+    toast.success("Attempting Contract Close");
+  };
   return (
     <Box
       sx={{
