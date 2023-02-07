@@ -25,14 +25,6 @@ import { newDelegatedEthAddress } from "@glif/filecoin-address";
 import { Beryx } from "@zondax/beryx";
 import { useTokenBalance } from "@/hooks/useSpacetimeToken";
 
-const connector = new MetaMaskConnector();
-
-const jwt = process.env.NEXT_PUBLIC_ZONDAX_BERYX_TOKEY;
-
-const beryxClient = new Beryx.Filecoin({ jwt, network: "hyperspace" });
-
-window.beryxClient = beryxClient;
-
 export default function Balance({}) {
   const [hydrated, setHydrated] = useState(false);
   const { address } = useAccount();
