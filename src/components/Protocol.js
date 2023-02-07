@@ -197,7 +197,7 @@ const Flow = () => {
           </Typography>
           <Button
             LinkComponent={Link}
-            href="/dapp/client/positions"
+            href="/dapp/provider/positions"
             sx={{ margin: 3 }}
           >
             View SP Positions
@@ -214,7 +214,7 @@ const Flow = () => {
           </Typography>
           <Button
             LinkComponent={Link}
-            href="/dapp/client/positions"
+            href="/dapp/provider/positions"
             sx={{ margin: 3 }}
           >
             View SP Positions
