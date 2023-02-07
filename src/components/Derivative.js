@@ -106,11 +106,6 @@ export default function Derivative({ derivative, view, address }) {
       </Stack>
       <Divider />
       <Stack direction="row" justifyContent="space-between" sx={{ padding: 1 }}>
-        <Typography variant="subtitle2">Size</Typography>
-        <Typography variant="subtitle2">{size.toString()}</Typography>
-      </Stack>
-      <Divider />
-      <Stack direction="row" justifyContent="space-between" sx={{ padding: 1 }}>
         <Typography variant="subtitle2">Client</Typography>
         <Typography variant="subtitle2">
           {hasClient ? client.toString() : "NA"}
