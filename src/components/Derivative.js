@@ -54,7 +54,10 @@ export default function Derivative({ derivative, view, address }) {
     currentAddress === clientEthAddress;
   const hasClient =
     clientEthAddress !== "0x0000000000000000000000000000000000000000";
-  const tradeEnabled = derivativeState === 1 && onSale === true;
+  const tradeEnabled =
+    derivativeState === 1 &&
+    onSale === true &&
+    currentAddress !== clientEthAddress;
 
   // const { config: buyConfig } = usePrepareContractWrite({
   //   address: Contracts.SpacetimeERC721,
