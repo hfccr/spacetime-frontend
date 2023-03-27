@@ -6,7 +6,6 @@ import {
   Divider,
   Stack,
   Tabs,
-  Tooltip,
   Typography,
   Button,
 } from "@mui/material";
@@ -17,19 +16,17 @@ import Image from "next/image";
 export default function ProviderLayout({ children }) {
   return (
     <>
-      <Tooltip title="PUSH">
-        <Box
-          component="span"
-          sx={{
-            marginBottom: 2,
-            fontFamily: "Cube",
-            fontSize: "x-large",
-            cursor: "pointer",
-          }}
-        >
-          PUSH
-        </Box>
-      </Tooltip>
+      <Box
+        component="span"
+        sx={{
+          marginBottom: 2,
+          fontFamily: "Cube",
+          fontSize: "x-large",
+          cursor: "pointer",
+        }}
+      >
+        PUSH
+      </Box>
       <Stack
         direction="column"
         sx={{ padding: 2, marginTop: 4 }}
