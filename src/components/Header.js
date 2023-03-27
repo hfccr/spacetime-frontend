@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: 6 }}>
       <AppBar position="static" sx={{ background: "transparent" }}>
         <Toolbar>
           <Box component="div" sx={{ flexGrow: 1 }}>
