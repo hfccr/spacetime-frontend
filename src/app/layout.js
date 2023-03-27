@@ -5,8 +5,18 @@ import { brandingDarkTheme } from "./../util/theme";
 import { WagmiConfig } from "wagmi";
 import "@fontsource/michroma";
 import "./globals.css";
-import { client } from "../util/chain";
+import { client, fvmChain, connectors, chains } from "../util/chain";
 import { Toaster } from "react-hot-toast";
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import "@rainbow-me/rainbowkit/styles.css";
+
+const customRainbowKitProperties = {
+  fonts: {
+    body: '"Michroma"',
+  },
+};
+
+const rainbowKitTheme = { ...darkTheme(), ...customRainbowKitProperties };
 
 export default function RootLayout({ children }) {
   return (
@@ -19,16 +29,18 @@ export default function RootLayout({ children }) {
       <body>
         <WagmiConfig client={client}>
           <ThemeProvider theme={brandingDarkTheme}>
-            <Header />
-            <div>{children}</div>
-            <Toaster
-              toastOptions={{
-                className: "",
-                style: {
-                  fontFamily: "Michroma",
-                },
-              }}
-            />
+            <RainbowKitProvider chains={chains} theme={rainbowKitTheme}>
+              <Header />
+              <div>{children}</div>
+              <Toaster
+                toastOptions={{
+                  className: "",
+                  style: {
+                    fontFamily: "Michroma",
+                  },
+                }}
+              />
+            </RainbowKitProvider>
           </ThemeProvider>
         </WagmiConfig>
       </body>

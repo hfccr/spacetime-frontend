@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button, ButtonGroup, Tooltip } from "@mui/material";
+import { Button, Stack, ButtonGroup } from "@mui/material";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { useAccount, useConnect, useEnsName, useDisconnect } from "wagmi";
 import toast from "react-hot-toast";
 import { fvmChain } from "@/util/chain";
 import { motion } from "framer-motion";
 import { newDelegatedEthAddress } from "@glif/filecoin-address";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const connector = new MetaMaskConnector();
 
@@ -85,21 +86,11 @@ export default function Connect({}) {
     });
   };
   return (
-    <>
-      {showConnect && <Button onClick={handleConnect}>{message}</Button>}
+    <Stack direction="column">
+      <ConnectButton chainStatus="icon" />
       {!showConnect && (
-        <ButtonGroup>
-          <Tooltip title={`Copy ETH Address ${address}`}>
-            <Button onClick={copyAddressToClipboard}>{message}</Button>
-          </Tooltip>
-          <Tooltip title={`Copy Filecoin t4 Address ${f4Address}`}>
-            <Button onClick={copyf4AddressToClipboard}>{t4Message}</Button>
-          </Tooltip>
-          <Tooltip title="Disconnect Account">
-            <Button onClick={handleConnect}>Disconnect</Button>
-          </Tooltip>
-        </ButtonGroup>
+        <Button onClick={copyf4AddressToClipboard}>{t4Message}</Button>
       )}
-    </>
+    </Stack>
   );
 }
