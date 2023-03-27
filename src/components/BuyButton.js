@@ -44,7 +44,6 @@ export default function BuyButton({ derivative, view, address }) {
     <Button
       size="small"
       onClick={() => {
-        console.log("buy");
         buyWrite?.();
       }}
       disabled={!buyEnabled}
