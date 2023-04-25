@@ -26,6 +26,7 @@ export default function CreatePositionForm({ actor, onSubmit }) {
       dealSize: 100000,
       term: 20000,
       price: 110000000,
+      margin: 20,
     },
   });
   let priceHelperText = "";
@@ -35,6 +36,14 @@ export default function CreatePositionForm({ actor, onSubmit }) {
     priceHelperText = "Price should be greater than 0";
   } else if (errors.price?.type === "max") {
     priceHelperText = "Price should be lesser than 110000000000000";
+  }
+  let marginHelperText = "";
+  if (errors.margin?.type === "required") {
+    marginHelperText = "Margin is required";
+  } else if (errors.margin?.type === "min") {
+    marginHelperText = "Margin should be greater than 0";
+  } else if (errors.margin?.type === "max") {
+    marginHelperText = "Margin should be lesser than 100";
   }
   let sizeHelperText = "";
   if (errors.dealSize?.type === "required") {
@@ -153,6 +162,31 @@ export default function CreatePositionForm({ actor, onSubmit }) {
                 type="number"
                 error={errors.price}
                 helperText={priceHelperText}
+              />
+            )}
+          />
+        </Stack>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ marginBottom: 2, paddingBottom: 2 }}
+        >
+          <Typography>Margin</Typography>
+          <Controller
+            name="margin"
+            control={control}
+            rules={{
+              required: true,
+              min: 1,
+              max: 11000000000,
+            }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                type="number"
+                error={errors.margin}
+                helperText={marginHelperText}
               />
             )}
           />
