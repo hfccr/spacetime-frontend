@@ -15,6 +15,7 @@
     "@fontsource/michroma": "^4.5.10",
     "@fontsource/roboto": "^4.5.8",
     "@glif/filecoin-address": "^2.0.43",
+    "@mui/base": "^5.0.0-alpha.126",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
     "@rainbow-me/rainbowkit": "^0.12.4",
@@ -30,5 +31,8 @@
     "react-hook-form": "^7.43.8",
     "react-hot-toast": "^2.4.0",
     "wagmi": "^0.12.6"
+  },
+  "devDependencies": {
+    "encoding": "^0.1.13"
   }
 }

@@ -7,9 +7,10 @@ export default function About() {
   return (
     <Container>
       <Typography>
-        Spacetime DAO controls the distribution of Spacetime Tokens. The DAO
-        awards new SP joinees with 1000 SPT tokens and awards them derivative
-        fees and margins in SPT tokens.
+        Spacetime DAO controls the distribution of Space Tokens and Space
+        Provider Tokens. Joining the DAO allows Providers to create positions
+        and earn Space Provider Tokens which can be exchanged for FIL post the
+        redemption of the contract.
       </Typography>
     </Container>
   );

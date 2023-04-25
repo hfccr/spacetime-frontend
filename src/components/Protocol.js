@@ -7,6 +7,7 @@ import {
   Divider,
   Stack,
   Typography,
+  Grid,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -28,199 +29,186 @@ const cardVariants = {
 
 const FlowStep = ({ children }) => {
   return (
-    <motion.div
-      className="card-container"
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: true, amount: 0.8 }}
-      sx={{
-        overflow: "hidden",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-        paddingTop: "20px",
-        marginBottom: "-120px",
-      }}
-    >
-      <motion.div className="card" variants={cardVariants}>
-        <Box
-          sx={{
-            padding: 4,
-            border: "1px solid white",
-            borderRadius: 4,
-            width: 380,
-            minHeight: 400,
-            margin: 10,
-          }}
-        >
-          {children}
-        </Box>
+    <Grid item xs={4}>
+      <motion.div
+        className="card-container"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.8 }}
+        sx={{
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          paddingTop: "20px",
+          marginBottom: "-120px",
+        }}
+      >
+        <motion.div className="card" variants={cardVariants}>
+          <Box
+            sx={{
+              padding: 1,
+              border: "1px solid white",
+              borderRadius: 4,
+              minHeight: 400,
+              // margin: 10,
+            }}
+          >
+            {children}
+          </Box>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </Grid>
   );
 };
 
 const Flow = () => {
   return (
-    <Box
-      sx={{
-        margin: "100px auto",
-        paddingBottom: "100px",
-      }}
-    >
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>1</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            SP Applies For Spacetime DAO Membership
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/dao/membership"
-            sx={{ margin: 3 }}
-          >
-            Get DAO Membership
-          </Button>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>2</Typography>
-          <Typography variant="h6" sx={{ margin: 2 }}>
-            Spacetime DAO Members Accept Membership Post Evaluation
-          </Typography>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>3</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            SP Creates A Spacetime Derivatives Contract
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/provider/create"
-            sx={{ margin: 3 }}
-          >
-            Create Contract
-          </Button>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>4</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            The Contract represents an obligation by the SP to create a Storage
-            Deal on Filecoin in future for a data set specified by the buyer of
-            the contract
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/provider/positions"
-            sx={{ margin: 3 }}
-          >
-            View SP Positions
-          </Button>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>5</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            Clients interested in buying contracts can do so by using their SPT
-            Token balance
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/client/market"
-            sx={{ margin: 3 }}
-          >
-            View Client Market
-          </Button>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>6</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            The SPT tokens used by the client to purchase the position are
-            transferred to the SP
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/provider/about"
-            sx={{ margin: 3 }}
-          >
-            View Provider Balance
-          </Button>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>7</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            Clients can optionally put ther positions for sale
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/client/positions"
-            sx={{ margin: 3 }}
-          >
-            View Client Positions
-          </Button>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>8</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            Client can indicate their desire to utilize the contract by logging
-            a Filecoin Deal Proposal on the contract
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/client/positions"
-            sx={{ margin: 3 }}
-          >
-            View Client Positions
-          </Button>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>9</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            Storage Providers can close the contract by supplying the contract
-            with a Filecoin Network Deal ID that satisfies the parameters of the
-            contract
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/provider/positions"
-            sx={{ margin: 3 }}
-          >
-            View SP Positions
-          </Button>
-        </Box>
-      </FlowStep>
-      <FlowStep>
-        <Box>
-          <Typography sx={{ fontFamily: "Cube", margin: 2 }}>1o</Typography>
-          <Typography variant="h6" sx={{ margin: 3 }}>
-            Storage Providers can close the contract by supplying the contract
-            with a Filecoin Network Deal ID that satisfies the parameters of the
-            contract
-          </Typography>
-          <Button
-            LinkComponent={Link}
-            href="/dapp/provider/positions"
-            sx={{ margin: 3 }}
-          >
-            View SP Positions
-          </Button>
-        </Box>
-      </FlowStep>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid
+        container
+        spacing={3}
+        sx={{
+          // margin: "100px auto",
+          paddingBottom: "100px",
+        }}
+      >
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>1</Typography>
+            <Typography variant="h6" sx={{ margin: 3 }}>
+              SP Applies For Spacetime DAO Membership
+            </Typography>
+            <Button
+              LinkComponent={Link}
+              href="/dapp/dao/membership"
+              sx={{ margin: 3 }}
+            >
+              Get DAO Membership
+            </Button>
+          </Box>
+        </FlowStep>
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>2</Typography>
+            <Typography variant="h6" sx={{ margin: 2 }}>
+              Spacetime DAO Members Accept Membership Post Evaluation
+            </Typography>
+          </Box>
+        </FlowStep>
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>3</Typography>
+            <Typography variant="h6" sx={{ margin: 3 }}>
+              SP Creates A Spacetime Derivatives Contract
+            </Typography>
+            <Button
+              LinkComponent={Link}
+              href="/dapp/provider/create"
+              sx={{ margin: 3 }}
+            >
+              Create Contract
+            </Button>
+          </Box>
+        </FlowStep>
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>4</Typography>
+            <Typography variant="h6" sx={{ margin: 3 }}>
+              The Contract represents an obligation by the SP to create a
+              Storage Deal on Filecoin in future for a data set specified by the
+              buyer of the contract
+            </Typography>
+            <Button
+              LinkComponent={Link}
+              href="/dapp/provider/positions"
+              sx={{ margin: 3 }}
+            >
+              View SP Positions
+            </Button>
+          </Box>
+        </FlowStep>
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>5</Typography>
+            <Typography variant="h6" sx={{ margin: 3 }}>
+              Clients buy contracts using FIL to cover Margin and Contract Cost
+            </Typography>
+            <Button
+              LinkComponent={Link}
+              href="/dapp/client/market"
+              sx={{ margin: 3 }}
+            >
+              View Client Market
+            </Button>
+          </Box>
+        </FlowStep>
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>6</Typography>
+            <Typography variant="h6" sx={{ margin: 3 }}>
+              The FIL used by the client to purchase the position are 1:1 Mapped
+              To SPT Token
+            </Typography>
+            <Button
+              LinkComponent={Link}
+              href="/dapp/provider/about"
+              sx={{ margin: 3 }}
+            >
+              View Provider Balance
+            </Button>
+          </Box>
+        </FlowStep>
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>7</Typography>
+            <Typography variant="h6" sx={{ margin: 3 }}>
+              Clients can optionally put ther positions for sale
+            </Typography>
+            <Button
+              LinkComponent={Link}
+              href="/dapp/client/positions"
+              sx={{ margin: 3 }}
+            >
+              View Client Positions
+            </Button>
+          </Box>
+        </FlowStep>
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>8</Typography>
+            <Typography variant="h6" sx={{ margin: 3 }}>
+              Client can indicate their desire to utilize the contract by
+              logging a Filecoin Deal Proposal on the contract
+            </Typography>
+            <Button
+              LinkComponent={Link}
+              href="/dapp/client/positions"
+              sx={{ margin: 3 }}
+            >
+              View Client Positions
+            </Button>
+          </Box>
+        </FlowStep>
+        <FlowStep>
+          <Box>
+            <Typography sx={{ fontFamily: "Cube", margin: 2 }}>9</Typography>
+            <Typography variant="h6" sx={{ margin: 3 }}>
+              Storage Providers can close the contract by supplying the contract
+              with a Filecoin Network Deal ID that satisfies the parameters of
+              the contract
+            </Typography>
+            <Button
+              LinkComponent={Link}
+              href="/dapp/provider/positions"
+              sx={{ margin: 3 }}
+            >
+              View SP Positions
+            </Button>
+          </Box>
+        </FlowStep>
+      </Grid>
     </Box>
   );
 };
@@ -278,6 +266,8 @@ const WhatIf = () => {
     </>
   );
 };
+
+const UseCases = () => {};
 
 const States = () => {
   return (
@@ -352,7 +342,7 @@ const Contracts = () => {
             Grant Memberships To SPs
           </Typography>
           <Typography variant="subtitle2" color="gray">
-            Manage SPT Tokens
+            Manage Tokens
           </Typography>
           <Typography variant="subtitle2" color="gray">
             Gatekeep Derivatives Minting
@@ -362,13 +352,13 @@ const Contracts = () => {
       <Box sx={{ padding: 0 }}>
         <Stack spacing={2}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Derivatives SBT Registry
+            Bond Registry
           </Typography>
           <Typography variant="subtitle2" color="gray">
-            Store Contract Parameters
+            ERC 3475 Bonds
           </Typography>
           <Typography variant="subtitle2" color="gray">
-            Manage Contract State Transition
+            Manage Contract State And Transition
           </Typography>
           <Typography variant="subtitle2" color="gray">
             Interact With FVM Market API
@@ -381,13 +371,13 @@ const Contracts = () => {
             SPT Token
           </Typography>
           <Typography variant="subtitle2" color="gray">
-            Client Buy Contracts Using SPT
+            Client Buy Contracts Using FIL
           </Typography>
           <Typography variant="subtitle2" color="gray">
-            SPs Rewarded By SPT
+            SPs Rewarded By 1:1 SPT Against Margin And Fees
           </Typography>
           <Typography variant="subtitle2" color="gray">
-            Trade Using SPT
+            SPTs can be traded and redeemed against FIL
           </Typography>
         </Stack>
       </Box>
@@ -400,9 +390,16 @@ export default function Protocol() {
     <Container sx={{ marginTop: 10, marginBottom: 10 }}>
       <Stack direction="column" spacing={10}>
         <Stack justifyContent="center" alignItems="center" spacing={4}>
-          <Typography variant="h6" sx={{ fontFamily: "Cube", marginBottom: 4 }}>
-            Protocol
-          </Typography>
+          <a name="protocol-info">
+            <div id="protocol-info">
+              <Typography
+                variant="h6"
+                sx={{ fontFamily: "Cube", marginBottom: 4 }}
+              >
+                Protocol
+              </Typography>
+            </div>
+          </a>
           <Contracts />
           <Flow />
           <States />

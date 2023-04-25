@@ -54,7 +54,7 @@ export default function Balance({}) {
         )}
       </Stack>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Typography variant="h4">Spacetime Tokens</Typography>
+        <Typography variant="h4">Space Tokens</Typography>
         {tokenBalanceLoading && (
           <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
         )}

@@ -26,7 +26,7 @@ import { fvmChain } from "@/util/chain";
 
 const memberText = "You are a member of Spacetime DAO";
 const nonMemberText =
-  "You are not a member of Spacetime DAO. Storage providers need to be a member of Spacetime DAO in order to create positions. You will receive 1000 SPT tokens on joining.";
+  "You are not a member of Spacetime DAO. Storage providers need to be a member of Spacetime DAO in order to create positions.";
 
 export default function About() {
   const { data: ethSigner } = useSigner(fvmChain.id);

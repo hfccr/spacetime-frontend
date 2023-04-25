@@ -13,7 +13,7 @@ export default function Home() {
         <Box component="div" sx={{ textAlign: "center" }}>
           <motion.div whileHover={{ scale: 1.1 }}>
             <div className={styles.center}>
-              <h1 className={styles.thirteen}>SPACETIME</h1>
+              <h1 className={styles.thirteen}>spacetime</h1>
             </div>
           </motion.div>
           <Typography variant="h6" sx={{ marginBottom: 2 }}>
